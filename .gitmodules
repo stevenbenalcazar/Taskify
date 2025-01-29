@@ -13,3 +13,6 @@
 [submodule "services/workspace/board-service"]
 	path = services/workspace/board-service
 	url = https://github.com/stevenbenalcazar/board-service.git
+[submodule "services/Card/update-card"]
+	path = services/Card/update-card
+	url = https://github.com/CinthiaDayanara/update-card.git
