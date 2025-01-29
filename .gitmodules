@@ -1,0 +1,15 @@
+[submodule "services/user/user-service"]
+	path = services/user/user-service
+	url = https://github.com/stevenbenalcazar/user-service.git
+[submodule "services/user/update-user-service"]
+	path = services/user/update-user-service
+	url = https://github.com/stevenbenalcazar/update-user-service.git
+[submodule "services/user/delete-user-service"]
+	path = services/user/delete-user-service
+	url = https://github.com/stevenbenalcazar/delete-user-service.git
+[submodule "services/user/login-service"]
+	path = services/user/login-service
+	url = https://github.com/stevenbenalcazar/login-service.git
+[submodule "services/workspace/board-service"]
+	path = services/workspace/board-service
+	url = https://github.com/stevenbenalcazar/board-service.git
