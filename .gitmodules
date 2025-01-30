@@ -16,3 +16,15 @@
 [submodule "services/Card/update-card"]
 	path = services/Card/update-card
 	url = https://github.com/CinthiaDayanara/update-card.git
+[submodule "created-card"]
+	path = created-card
+	url = https://github.com/CinthiaDayanara/created-card.git
+[submodule "services/list/update-lists"]
+	path = services/list/update-lists
+	url = https://github.com/CinthiaDayanara/update-lists.git
+[submodule "services/list/lists"]
+	path = services/list/lists
+	url = https://github.com/CinthiaDayanara/lists.git
+[submodule "services/list/created-lists"]
+	path = services/list/created-lists
+	url = https://github.com/CinthiaDayanara/created-lists.git
