@@ -28,3 +28,6 @@
 [submodule "services/list/created-lists"]
 	path = services/list/created-lists
 	url = https://github.com/CinthiaDayanara/created-lists.git
+[submodule "frontend/frontend"]
+	path = frontend/frontend
+	url = https://github.com/stevenbenalcazar/taskify-frontend.git
