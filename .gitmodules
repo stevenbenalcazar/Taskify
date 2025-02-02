@@ -31,3 +31,39 @@
 [submodule "frontend/frontend"]
 	path = frontend/frontend
 	url = https://github.com/stevenbenalcazar/taskify-frontend.git
+[submodule "services/Card/cards-priority-service"]
+	path = services/Card/cards-priority-service
+	url = https://github.com/CinthiaDayanara/cards-priority-service.git
+[submodule "services/Card/cards-expiration-service"]
+	path = services/Card/cards-expiration-service
+	url = https://github.com/CinthiaDayanara/cards-expiration-service.git
+[submodule "services/Card/cards-assign-member-service"]
+	path = services/Card/cards-assign-member-service
+	url = https://github.com/CinthiaDayanara/cards-assign-member-service.git
+[submodule "services/Card/cards-update-service"]
+	path = services/Card/cards-update-service
+	url = https://github.com/CinthiaDayanara/cards-update-service.git
+[submodule "services/list/lists-service"]
+	path = services/list/lists-service
+	url = https://github.com/CinthiaDayanara/lists-service.git
+[submodule "services/list/lists-view-service"]
+	path = services/list/lists-view-service
+	url = https://github.com/CinthiaDayanara/lists-view-service.git
+[submodule "services/list/lists-delete-service"]
+	path = services/list/lists-delete-service
+	url = https://github.com/CinthiaDayanara/lists-delete-service.git
+[submodule "services/workspace/workspace-invite-handler"]
+	path = services/workspace/workspace-invite-handler
+	url = https://github.com/CinthiaDayanara/workspace-invite-handler.git
+[submodule "services/workspace/workspace-invite-service"]
+	path = services/workspace/workspace-invite-service
+	url = https://github.com/CinthiaDayanara/workspace-invite-service.git
+[submodule "services/workspace/lists-update-service"]
+	path = services/workspace/lists-update-service
+	url = https://github.com/CinthiaDayanara/lists-update-service.git
+[submodule "services/list/lists-update-service"]
+	path = services/list/lists-update-service
+	url = https://github.com/CinthiaDayanara/lists-update-service.git
+[submodule "services/Card/cards-create-service"]
+	path = services/Card/cards-create-service
+	url = https://github.com/CinthiaDayanara/cards-create-service.git
