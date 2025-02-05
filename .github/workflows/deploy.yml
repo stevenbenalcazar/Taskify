@@ -1,0 +1,46 @@
+name: Deploy Frontend to AWS EC2
+
+on:
+  push:
+    branches:
+      - main  # Ejecuta el workflow cuando se haga un push a main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 📥 Clonar el repositorio
+      uses: actions/checkout@v3
+    
+    - name: 📦 Instalar Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: 📦 Instalar dependencias del frontend
+      working-directory: frontend
+      run: npm install
+
+    - name: 🏗️ Construir el frontend
+      working-directory: frontend
+      run: npm run build
+
+    - name: 🚀 Subir archivos a EC2
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.AWS_EC2_HOST }}
+        username: ${{ secrets.AWS_EC2_USER }}
+        key: ${{ secrets.AWS_PRIVATE_KEY }}
+        source: "frontend/dist/*"
+        target: "/var/www/taskify-frontend"
+
+    - name: 🔄 Reiniciar servidor en EC2
+      uses: appleboy/ssh-action@v0.1.4
+      with:
+        host: ${{ secrets.AWS_EC2_HOST }}
+        username: ${{ secrets.AWS_EC2_USER }}
+        key: ${{ secrets.AWS_PRIVATE_KEY }}
+        script: |
+          cd /var/www/taskify-frontend
+          pm2 restart frontend || pm2 start npm --name "frontend" -- start
