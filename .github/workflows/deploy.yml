@@ -3,20 +3,22 @@ name: Deploy Frontend to AWS EC2
 on:
   push:
     branches:
-      - main  # Ejecuta el workflow cuando haya cambios en `main`
+      - main  # Se ejecuta cuando hay un push a main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - name: 📥 Clonar el repositorio con submódulos
+    - name: 📥 Clonar solo el frontend
       uses: actions/checkout@v3
       with:
-        submodules: true  # 🔹 Clona los submódulos correctamente
+        sparse-checkout: |
+          frontend
+        sparse-checkout-cone-mode: false
 
     - name: 📂 Verificar estructura del repo
-      run: ls -R  # 🔹 Verifica que el código del frontend está presente
+      run: ls -R frontend
     
     - name: 📦 Instalar Node.js
       uses: actions/setup-node@v3
@@ -24,22 +26,20 @@ jobs:
         node-version: 18
 
     - name: 📦 Instalar dependencias del frontend
-      run: |
-        cd taskify/frontend/frontend
-        npm install
+      working-directory: frontend/frontend
+      run: npm install
 
     - name: ⚙️ Construir el proyecto
-      run: |
-        cd taskify/frontend/frontend
-        npm run build
+      working-directory: frontend/frontend
+      run: npm run build
       
-    - name: 🚀 Subir archivos a EC2
+    - name: 🚀 Subir frontend a EC2
       uses: appleboy/scp-action@v0.1.4
       with:
         host: ${{ secrets.AWS_EC2_HOST }}
         username: ${{ secrets.AWS_EC2_USER }}
         key: ${{ secrets.AWS_PRIVATE_KEY }}
-        source: "taskify/frontend/frontend/dist/*"
+        source: "frontend/frontend/dist/*"
         target: "/var/www/taskify-frontend"
 
     - name: 🔄 Reiniciar servidor en EC2
@@ -50,5 +50,4 @@ jobs:
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         script: |
           cd /var/www/taskify-frontend
-          npm install -g pm2 || true  # Instalar pm2 si no existe
           pm2 restart frontend || pm2 start npm --name "frontend" -- start
