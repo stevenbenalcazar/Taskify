@@ -12,6 +12,9 @@ jobs:
     steps:
     - name: 📥 Clonar el repositorio
       uses: actions/checkout@v3
+
+    - name: 📂 Verificar estructura del repo
+      run: ls -R
     
     - name: 📦 Instalar Node.js
       uses: actions/setup-node@v3
@@ -19,12 +22,13 @@ jobs:
         node-version: 18
 
     - name: 📦 Instalar dependencias del frontend
-      working-directory: frontend
-      run: npm install
+        working-directory: taskify/frontend/frontend
+        run: npm install
 
-    - name: 🏗️ Construir el frontend
-      working-directory: frontend
-      run: npm run build
+    - name: ⚙️ Construir el proyecto
+        working-directory: taskify/frontend/frontend
+        run: npm run build
+      
 
     - name: 🚀 Subir archivos a EC2
       uses: appleboy/scp-action@v0.1.4
