@@ -3,31 +3,35 @@ name: Deploy Frontend to AWS EC2
 on:
   push:
     branches:
-      - main  # Ejecuta el workflow en cada push a main
+      - main  # Ejecuta el workflow cuando haya cambios en `main`
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     
     steps:
-    - name: 📥 Clonar el repositorio
+    - name: 📥 Clonar el repositorio con submódulos
       uses: actions/checkout@v3
+      with:
+        submodules: true  # 🔹 Clona los submódulos correctamente
 
     - name: 📂 Verificar estructura del repo
-      run: ls -R
-
+      run: ls -R  # 🔹 Verifica que el código del frontend está presente
+    
     - name: 📦 Instalar Node.js
       uses: actions/setup-node@v3
       with:
         node-version: 18
 
     - name: 📦 Instalar dependencias del frontend
-      run: npm install
-      working-directory: taskify/frontend/frontend
+      run: |
+        cd taskify/frontend/frontend
+        npm install
 
     - name: ⚙️ Construir el proyecto
-      run: npm run build
-      working-directory: taskify/frontend/frontend
+      run: |
+        cd taskify/frontend/frontend
+        npm run build
       
     - name: 🚀 Subir archivos a EC2
       uses: appleboy/scp-action@v0.1.4
